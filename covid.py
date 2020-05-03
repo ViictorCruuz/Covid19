@@ -46,17 +46,21 @@ else:
     print("Number of deaths in the world: %s\n" % death_cases_in_the_world)
     print("Number of recovered in the world: %s\n" % recovered_data_in_the_world)
 
-    resp = input("\n\t\t\t I WOULD LIKE TO KNOW INFORMATION ABOUT A SPECIFIC COUNTRY ? \n\n Yes/No ?")
+    resp = input("\n\t\t\t I WOULD LIKE TO KNOW INFORMATION ABOUT A SPECIFIC COUNTRY ? \n\n Yes/No ? ")
 
     if resp == 'Yes':
         specified_country = input("\nWhich country ? ")
+        while specified_country not in dict_['Country Name'].values():
+            print("Country not found, try find other country!")
+            specified_country = input("\nWhich country ? ")
+
         idx = list(dict_['Country Name'].values()).index(specified_country)
         specific_country_death_information = dict_['Death on Country'][idx]
         specific_country_confirmed_cases_information = dict_['Confirmed Cases on Country'][idx]
 
-        print("\nIn the %s we have \n%s - deaths \n%s - confirmed cases!!!" % (
+        print("\nIn %s we have \n%s - deaths \n%s - confirmed cases!!!" % (
             specified_country, specific_country_death_information, specific_country_confirmed_cases_information))
     elif resp == 'No':
-        print("Thanks !!!")
+        print("Ok. Thanks !!!")
     else:
-        print("Invalid response")
+        print("%s is not valid response.\nAllowed responses are 'Yes' or 'No'. Run the script again and select only allowed responses" % resp)
